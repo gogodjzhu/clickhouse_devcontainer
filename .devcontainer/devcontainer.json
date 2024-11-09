@@ -1,0 +1,32 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/cpp
+{
+	"name": "clickhouse_devcontainer",
+	"dockerComposeFile": "docker-compose.yml",
+    "service": "workspaces",
+	"mounts": [
+		{
+			"source": "workspaces",
+			"target": "/workspaces",
+			"type": "volume"
+		},
+		{
+			"source": "./init.sh",
+			"target": "/init.sh",
+			"type": "bind"
+		}
+	],
+    "workspaceFolder": "/workspaces",
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": ["bash", "/init.sh"],
+	"waitFor": "postCreateCommand",
+	// Configure tool-specific properties.
+	// "customizations": {},
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "root"
+}

@@ -1,0 +1,17 @@
+version: "3.3"
+services:
+  workspaces:
+    container_name: workspaces
+    build: 
+      dockerfile: Dockerfile
+    ports:
+      - 8123:8123       # for clickhouse http port
+    restart: unless-stopped
+    working_dir: /workspaces
+    environment:
+      - TZ=Asia/Shanghai
+    command: sleep infinity
+
+volumes:
+  workspaces:
+    driver: local
